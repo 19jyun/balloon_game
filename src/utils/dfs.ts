@@ -20,14 +20,14 @@ export default function dfs(
     return tempPopped;
   }
 
-  grid[row][column] = ""; // Mark balloon as popped
+  grid[row][column] = "P";
   visited.add(key);
   tempPopped++;
 
-  tempPopped += dfs(grid, row - 1, column, visited); // Up
-  tempPopped += dfs(grid, row + 1, column, visited); // Down
-  tempPopped += dfs(grid, row, column - 1, visited); // Left
-  tempPopped += dfs(grid, row, column + 1, visited); // Right
+  tempPopped += dfs(grid, row - 1, column, visited);
+  tempPopped += dfs(grid, row + 1, column, visited);
+  tempPopped += dfs(grid, row, column - 1, visited);
+  tempPopped += dfs(grid, row, column + 1, visited);
 
   return tempPopped;
 }

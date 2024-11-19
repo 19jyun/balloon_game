@@ -1,5 +1,5 @@
-import dfs from "./dfs";
-import checkGameComplete from "./checkGameComplete";
+import dfs from "../utils/dfs";
+import checkGameComplete from "../utils/checkGameComplete";
 
 export default function popOnClick(
   rowIndex: number,

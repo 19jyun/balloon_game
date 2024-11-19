@@ -1,15 +1,21 @@
-import React from 'react';
+import React from "react";
 
 interface InputProps {
   gridSize: number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: React.FC<InputProps> = ({ gridSize, onChange }) => {
   return (
     <div>
-      <input type="number" value={gridSize} onChange={onChange} min="1" />
-      <p>Grid Size: {gridSize}</p>
+      <label>Grid Size: </label>
+      <input
+        type="number"
+        value={gridSize}
+        onChange={onChange}
+        className="input"
+        min={1}
+      />
     </div>
   );
 };

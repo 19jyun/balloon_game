@@ -4,14 +4,14 @@ import Overlay from './components/Overlay';
 import Input from './components/Input';
 import generateGrid from './utils/generateGrid';
 import generateAnswer from './utils/generateAnswer';
-import popOnClick from './utils/popOnClick';
-import handleGridSizeChange from './utils/handleGridSizeChange';
-import manageOverlay from "./utils/manageOverlay";
+import popOnClick from './hooks/popOnClick';
+import handleGridSizeChange from './hooks/handleGridSizeChange';
+import manageOverlay from "./hooks/manageOverlay";
 
 const App: React.FC = () => {
   const [gridSize, setGridSize] = useState(5);
-  const [grid, setGrid] = useState(generateGrid(gridSize));
-  const [answer, setAnswer] = useState(generateAnswer(grid));
+  const [grid, setGrid] = useState<string[][]>([]);
+  const [answer, setAnswer] = useState<number[]>([]);
   const [showFail, setShowFail] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
@@ -43,46 +43,47 @@ const App: React.FC = () => {
     }
   }, [grid]);
 
-  return (
-    <div>
+return (
+  <div>
+    <div className="center-container">
       <h1>Balloon Game</h1>
-
       <Input
         gridSize={gridSize}
         onChange={(e) =>
           handleGridSizeChange(e, setGridSize, setGrid, setAnswer)
         }
       />
-
-      <Grid
-        grid={grid}
-        onCellClick={(rowIndex, columnIndex) =>
-          popOnClick(
-            rowIndex,
-            columnIndex,
-            grid,
-            answer,
-            setGrid,
-            setAnswer,
-            openFailOverlay,
-            openSuccessOverlay 
-          )
-        }
-      />
-
-      <Overlay
-        isVisible={showFail}
-        message="Game Over!"
-        onClose={closeFailOverlay}
-      />
-
-      <Overlay
-        isVisible={showSuccess}
-        message="Game Complete!"
-        onClose={closeSuccessOverlay}
-      />
     </div>
-  );
+
+    <Grid
+      grid={grid}
+      onCellClick={(rowIndex, columnIndex) =>
+        popOnClick(
+          rowIndex,
+          columnIndex,
+          grid,
+          answer,
+          setGrid,
+          setAnswer,
+          openFailOverlay,
+          openSuccessOverlay
+        )
+      }
+    />
+
+    <Overlay
+      isVisible={showFail}
+      message="Game Over"
+      onClose={closeFailOverlay}
+    />
+
+    <Overlay
+      isVisible={showSuccess}
+      message="Game Complete!"
+      onClose={closeSuccessOverlay}
+    />
+  </div>
+);
 };
 
 export default App;

@@ -1,4 +1,6 @@
 import React from 'react';
+import balloonImage from "../assets/images/balloon.jpg";
+import popImage from "../assets/images/pop.png";
 
 interface BalloonCellProps {
   value: string;
@@ -7,20 +9,16 @@ interface BalloonCellProps {
 
 const BalloonCell: React.FC<BalloonCellProps> = ({ value, onClick }) => {
   return (
-    <td
-      style={{
-        width: '40px',
-        height: '40px',
-        textAlign: 'center',
-        verticalAlign: 'middle', // Center content vertically
-        fontSize: '24px', // Ensure 🎈 is visible
-        border: '1px solid black',
-        backgroundColor: value === 'B' ? 'lightblue' : 'white',
-        cursor: 'pointer',
-      }}
-      onClick={onClick}
-    >
-      {value}
+    <td className="cell" onClick={onClick}>
+      {value === "B" && (
+        <img src={balloonImage} alt="Balloon" className="balloon" />
+      )}
+      {value === "P" && (
+        <img src={popImage} alt="Popped Balloon" className="popped" />
+      )}
+      {value === "" && (
+        <span></span>
+      )}
     </td>
   );
 };

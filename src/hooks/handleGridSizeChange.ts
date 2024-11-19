@@ -1,5 +1,5 @@
-import generateGrid from "./generateGrid";
-import generateAnswer from "./generateAnswer";
+import generateGrid from "../utils/generateGrid";
+import generateAnswer from "../utils/generateAnswer";
 
 export default function handleGridSizeChange(
   event: React.ChangeEvent<HTMLInputElement>,

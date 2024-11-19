@@ -9,7 +9,7 @@ export default function generateAnswer(grid: string[][]): number[] {
   const numRows = grid.length;
   const numColumns = grid[0].length;
 
-  const tempGrid = grid.map((row) => [...row]); // Create a copy to avoid modifying the original grid
+  const tempGrid = grid.map((row) => [...row]);
   const visited = new Set<string>();
 
   let arrayOfBalloons: number[] = [];
