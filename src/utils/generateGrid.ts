@@ -1,4 +1,6 @@
-export default function generateGrid(gridSize: number): string[][] {
+import { Grid } from "../models/types";
+
+export default function generateGrid(gridSize: number): Grid {
   const grid = [];
   for (let i = 0; i < gridSize; i++) {
     const row = [];

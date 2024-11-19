@@ -7,27 +7,24 @@ import generateAnswer from './utils/generateAnswer';
 import popOnClick from './hooks/popOnClick';
 import handleGridSizeChange from './hooks/handleGridSizeChange';
 import manageOverlay from "./hooks/manageOverlay";
+import resetGame from "./hooks/resetGame";
+import { Grid as GridType, Answer as AnswerType } from "./models/types";
 
 const App: React.FC = () => {
   const [gridSize, setGridSize] = useState(5);
-  const [grid, setGrid] = useState<string[][]>([]);
-  const [answer, setAnswer] = useState<number[]>([]);
+  const [grid, setGrid] = useState<GridType>([]);
+  const [answer, setAnswer] = useState<AnswerType>([]);
   const [showFail, setShowFail] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const resetGame = () => {
-    const newGrid = generateGrid(gridSize);
-    setGrid(newGrid);
-    const newAnswer = generateAnswer(newGrid);
-    setAnswer(newAnswer);
-  };
+  const ResetGame = resetGame(gridSize, setGrid, setAnswer);
 
   const {
     openFailOverlay,
     closeFailOverlay,
     openSuccessOverlay,
     closeSuccessOverlay,
-  } = manageOverlay(setShowFail, setShowSuccess, resetGame);
+  } = manageOverlay(setShowFail, setShowSuccess, ResetGame);
 
   useEffect(() => {
     const newGrid = generateGrid(gridSize);
@@ -62,7 +59,6 @@ return (
           grid,
           answer,
           setGrid,
-          setAnswer,
           openFailOverlay,
           openSuccessOverlay
         )

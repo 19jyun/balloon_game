@@ -1,5 +1,7 @@
+import { Grid } from "../models/types";
+
 export default function dfs(
-  grid: string[][],
+  grid: Grid,
   row: number,
   column: number,
   visited: Set<string>
@@ -17,10 +19,10 @@ export default function dfs(
     grid[row][column] !== "B" ||
     visited.has(key)
   ) {
-    return tempPopped;
+    return tempPopped; // Return if out of bounds
   }
 
-  grid[row][column] = "P";
+  grid[row][column] = "P"; // Mark as popped
   visited.add(key);
   tempPopped++;
 
