@@ -29,8 +29,6 @@ const App: React.FC = () => {
     closeSuccessOverlay,
   } = manageOverlay(setShowFail, setShowSuccess, resetGame);
 
-  console.log("answer: ", answer);
-
   useEffect(() => {
     const newGrid = generateGrid(gridSize);
     setGrid(newGrid); 

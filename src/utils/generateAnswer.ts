@@ -2,7 +2,6 @@ import dfs from "./dfs";
 
 export default function generateAnswer(grid: string[][]): number[] {
   if (!grid || grid.length === 0) {
-    console.log("Grid is empty. Returning an empty array.");
     return [];
   }
 
@@ -20,16 +19,12 @@ export default function generateAnswer(grid: string[][]): number[] {
       if (tempGrid[i][j] === "B" && !visited.has(`${i},${j}`)) {
         console.log(`New group detected starting at (${i}, ${j}).`);
         const numberOfBalloons = dfs(tempGrid, i, j, visited);
-        console.log(
-          `Group starting at (${i}, ${j}) has size ${numberOfBalloons}.`
-        );
         arrayOfBalloons.push(numberOfBalloons);
       }
     }
   }
 
   arrayOfBalloons.sort((a, b) => b - a);
-  console.log("Sorted balloon groups by size:", arrayOfBalloons);
 
   return arrayOfBalloons;
 }
